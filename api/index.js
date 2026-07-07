@@ -7,34 +7,24 @@ connectToMongo();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Configure CORS options
-const corsOptions = {
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      "http://localhost:3000",
-      process.env.FRONTEND_URL,
-    ].filter(Boolean);
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the request
-    } else {
-      callback(new Error("Not allowed by CORS")); // Block the request
-    }
-  },
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-
-// Apply CORS middleware with the options
-app.use(cors(corsOptions));
+// Allow all CORS since frontend and backend are on the same Vercel domain
+app.use(cors());
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ message: "NutriTrack Backend is working!" });
+app.get("/api", (req, res) => {
+  res.json({ message: "NutriTrack Backend API is working!" });
 });
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/note", require("./routes/note"));
 
-app.listen(port, () => {
-  console.log(`NutriTrack app listening on port http://localhost:${port}`);
-});
+// Export the app for Vercel serverless function
+module.exports = app;
+
+// Only listen locally if not on Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`NutriTrack app listening on port http://localhost:${port}`);
+  });
+}
