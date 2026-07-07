@@ -5,6 +5,9 @@
   "engines": {
     "node": "20.x"
   },
+  "overrides": {
+    "ajv-keywords": "^3.5.2"
+  },
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/react": "^13.4.0",
