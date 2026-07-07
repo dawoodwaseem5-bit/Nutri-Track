@@ -28,7 +28,7 @@ const News = (props) => {
 
   const fetchNews = async () => {
     try {
-      const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
+      const url = `/api/news?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
   
       const response = await fetch(url);
@@ -58,7 +58,7 @@ const News = (props) => {
   }, [props.category]);
 
   const fetchMoreData = async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${
+    const url = `/api/news?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${
       page + 1
     }&pageSize=${props.pageSize}`;
     setPage(page + 1);

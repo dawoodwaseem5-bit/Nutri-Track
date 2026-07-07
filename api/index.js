@@ -18,6 +18,7 @@ app.get("/api", (req, res) => {
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/note", require("./routes/note"));
+app.use("/api/news", require("./routes/news"));
 
 // Export the app for Vercel serverless function
 module.exports = app;
