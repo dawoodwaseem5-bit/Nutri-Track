@@ -4,7 +4,6 @@ import "../styles/DietPlans.css";
 import weightGainImage from "../images/1.jpg";
 import weightLossImage from "../images/2.jpg";
 import ketoDietImage from "../images/3.jpg";
-import Header from "./Header";
 
 const DietPlans = () => {
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ const DietPlans = () => {
 
   return (
     <>
-      <Header />
       <div className="diet-plans-wrapper">
         <h1 className="diet-plans-title">Diet Plans According To Your Weight</h1>
         <div className="diet-plans-grid">
